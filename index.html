@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Question For You ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="stylr.css">
+</head>
+
+<body>
+
+<div class="floating-hearts"></div>
+
+<div class="container">
+
+    <div class="card">
+
+        <img
+        class="cat-gif"
+        src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
+        alt="Cute Cat">
+
+        <h1>Will You Go On A Date With Me? 💖</h1>
+
+        <p class="subtitle">
+            Something special I want to tell you 🥺👉👈
+        </p>
+
+        <div class="btn-group">
+
+            <button id="yesBtn" class="yes-btn">
+                YES 💕
+            </button>
+
+            <button id="noBtn" class="no-btn">
+                NO 😭
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const noBtn = document.getElementById("noBtn");
+
+function moveButton() {
+
+    const maxX = window.innerWidth - 180;
+    const maxY = window.innerHeight - 100;
+
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+}
+
+noBtn.addEventListener("mouseenter", moveButton);
+noBtn.addEventListener("click", moveButton);
+
+document.getElementById("yesBtn").addEventListener("click", () => {
+    window.location.href = "date.html";
+});
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.classList.add("heart");
+
+    heart.innerHTML = "💖";
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.animationDuration =
+    (Math.random() * 3 + 4) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 7000);
+}
+
+setInterval(createHeart, 600);
+
+</script>
+
+</body>
+</html>

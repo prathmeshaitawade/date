@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Choose Food 🍕</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stylr.css">
+
+</head>
+<body>
+
+<div class="floating-hearts"></div>
+
+<div class="container">
+
+<div class="card food-card-page">
+
+<img
+class="cat-gif"
+src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
+alt="Food Time">
+
+<h1>What Should We Eat? 🍽️💕</h1>
+
+<p class="subtitle">
+Choose your favorite food 😋
+</p>
+
+<div class="food-grid">
+
+<div class="food-item" onclick="selectFood(this,'Pizza 🍕')">
+🍕
+<span>Pizza</span>
+</div>
+
+<div class="food-item" onclick="selectFood(this,'Burger 🍔')">
+🍔
+<span>Burger</span>
+</div>
+
+<div class="food-item" onclick="selectFood(this,'Sushi 🍣')">
+🍣
+<span>Sushi</span>
+</div>
+
+<div class="food-item" onclick="selectFood(this,'Pasta 🍝')">
+🍝
+<span>Pasta</span>
+</div>
+
+<div class="food-item" onclick="selectFood(this,'Tacos 🌮')">
+🌮
+<span>Tacos</span>
+</div>
+
+<div class="food-item" onclick="selectFood(this,'Ramen 🍜')">
+🍜
+<span>Ramen</span>
+</div>
+
+</div>
+
+<button
+class="next-btn food-next"
+onclick="goNext()">
+Continue ❤️
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+let selectedFood = "";
+
+function selectFood(element, food){
+
+document
+.querySelectorAll(".food-item")
+.forEach(item=>{
+item.classList.remove("selected-food");
+});
+
+element.classList.add("selected-food");
+
+selectedFood = food;
+
+}
+
+function goNext(){
+
+if(selectedFood === ""){
+alert("Choose food first 😋❤️");
+return;
+}
+
+localStorage.setItem(
+"selectedFood",
+selectedFood
+);
+
+window.location.href =
+"final.html";
+
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => {
+        heart.remove();
+    }, 7000);
+}
+
+setInterval(createHeart, 600);
+
+</script>
+
+</body>
+</html>

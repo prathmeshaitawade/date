@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>It's A Date ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ffd6e8,#fff0f7);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:auto;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:500px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:30px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+position:relative;
+z-index:10;
+}
+
+.cat-gif{
+width:220px;
+max-width:100%;
+}
+
+h1{
+color:#ff4f9f;
+margin-top:15px;
+font-size:34px;
+}
+
+.subtitle{
+margin-top:10px;
+color:#666;
+font-size:18px;
+}
+
+.summary-box{
+margin-top:25px;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.summary-item{
+background:#fff5fa;
+padding:15px;
+border-radius:15px;
+font-size:18px;
+font-weight:600;
+}
+
+.love-text{
+margin-top:25px;
+color:#ff4f9f;
+}
+
+.next-btn{
+margin-top:25px;
+background:#ff4f9f;
+color:white;
+border:none;
+padding:15px 30px;
+border-radius:20px;
+font-size:18px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+
+.next-btn:hover{
+transform:scale(1.05);
+}
+
+.heart{
+position:fixed;
+bottom:-50px;
+font-size:30px;
+pointer-events:none;
+animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+
+0%{
+transform:translateY(0);
+opacity:1;
+}
+
+100%{
+transform:translateY(-120vh);
+opacity:0;
+}
+
+}
+
+.status-text{
+display:block;
+margin-top:15px;
+font-size:15px;
+color:#ff4f9f;
+font-weight:600;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<img
+class="cat-gif"
+src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif"
+alt="Happy Cat">
+
+<h1>YAYYYYY ❤️🥹</h1>
+
+<p class="subtitle">
+It's Official... We Have A Date 💕
+</p>
+
+<div class="summary-box">
+
+<div class="summary-item">
+📅 <span id="dateText"></span>
+</div>
+
+<div class="summary-item">
+⏰ <span id="timeText"></span>
+</div>
+
+<div class="summary-item">
+🍕 <span id="foodText"></span>
+</div>
+
+</div>
+
+<h2 class="love-text">
+I Can't Wait To See You ❤️
+</h2>
+
+<button
+class="next-btn"
+onclick="celebrate()">
+Celebrate 🎉
+</button>
+
+<div class="status-text" id="statusText">
+Ready to send confirmation.
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("dateText").innerText =
+localStorage.getItem("selectedDate") || "Not Selected";
+
+document.getElementById("timeText").innerText =
+localStorage.getItem("selectedTime") || "Not Selected";
+
+document.getElementById("foodText").innerText =
+localStorage.getItem("selectedFood") || "Not Selected";
+
+const WEB_APP_URL =
+"https://script.google.com/macros/s/AKfycbw7RJ923n-jFE7J-7lKVdpic3Sj00FrVbHI6vPv_bp6SVsVkTnXrkxG5yYRPmpdvBFo8Q/exec";
+
+function createHeart(){
+
+const heart =
+document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML = "💖";
+
+heart.style.left =
+Math.random()*100 + "vw";
+
+heart.style.animationDuration =
+(Math.random()*3+3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+
+}
+
+setInterval(createHeart,700);
+
+function openEmailClient(details) {
+    const subject = encodeURIComponent("Date Confirmation");
+    const body = encodeURIComponent(
+        `Hello,\n\nYour date has been confirmed!\n\nDate: ${details.date || "Not selected"}\nTime: ${details.time || "Not selected"}\nFood: ${details.food || "Not selected"}\n\nSee you soon!`
+    );
+    const mailtoUrl = `mailto:?subject=${subject}&body=${body}`;
+    window.location.assign(mailtoUrl);
+}
+function celebrate(){
+
+const date = localStorage.getItem("selectedDate");
+const time = localStorage.getItem("selectedTime");
+const food = localStorage.getItem("selectedFood");
+
+const form = document.createElement("form");
+
+form.method = "POST";
+
+form.action =
+"https://formsubmit.co/parthaitawade20@gmail.com";
+
+form.innerHTML = `<input type="hidden" name="Date" value="${date}"> <input type="hidden" name="Time" value="${time}"> <input type="hidden" name="Food" value="${food}"> <input type="hidden" name="_subject" value="❤️ New Date Confirmation"> <input type="hidden" name="_captcha" value="false">`;
+
+document.body.appendChild(form);
+
+form.submit();
+
+}
+
+</script>
+
+</body>
+</html>
